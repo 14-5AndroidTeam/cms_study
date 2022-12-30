@@ -6,6 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object Builder {
     val baseUrl = "https://dh-todo.inuappcenter.kr/"
+
     var gson = GsonBuilder().setLenient().create()
     val retrofit = Retrofit.Builder()
         .baseUrl(baseUrl)

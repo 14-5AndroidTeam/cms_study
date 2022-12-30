@@ -10,3 +10,4 @@ data class Todos(
     @SerializedName("isCompleted")
     var isCompleted:Boolean
 )
+

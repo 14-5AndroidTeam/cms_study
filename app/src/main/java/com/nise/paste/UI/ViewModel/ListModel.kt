@@ -24,6 +24,10 @@ class ListModel:androidx.lifecycle.ViewModel() {
 
             override fun onFailure(throwable: Throwable) {
             }
+
         })
     }
 }
+
+
+

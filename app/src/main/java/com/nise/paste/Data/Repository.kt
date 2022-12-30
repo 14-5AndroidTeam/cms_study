@@ -1,8 +1,8 @@
 package com.nise.paste.Data
 
 import android.util.Log
-import com.nise.paste.Data.DTO.Form
 import com.nise.paste.Data.DTO.ToDoList
+import com.nise.paste.Data.DTO.toDo
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -11,23 +11,24 @@ class Repository {
     private  val Dr = Builder
 
     fun getList(param: GetDataCallback<ToDoList>) {
-        val call = Builder.apiService.getList()
+        val call = Dr.apiService.getTodoList()
 
         call.enqueue(object : Callback<ToDoList>{
-
-            override fun onResponse(call: Call<ToDoList>, response: Response<ToDoList>) {
+            override fun onResponse(callMember: Call<ToDoList>, response: Response<ToDoList>) {
                 Log.i("response", response.body().toString())
                 param.onSuccess(response.body())
             }
-
-            override fun onFailure(call: Call<ToDoList>, t: Throwable) {
+            override fun onFailure(callMember: Call<ToDoList>, t: Throwable) {
                 param.onFailure(t)
             }
         })
+
+
     }
 
-    fun postForm(form: Form){
-        val call = Builder.apiService.postForm(form)
+
+    fun postForm(toDo: toDo){
+        val call = Builder.apiService.postForm(toDo)
 
         call.enqueue(object:Callback<String>{
 
@@ -42,7 +43,9 @@ class Repository {
     }
 
     interface GetDataCallback<T>{
-        fun onSuccess(data:T?)
+        fun onSuccess(data: ToDoList?)
         fun onFailure(throwable: Throwable)
     }
 }
+
+
